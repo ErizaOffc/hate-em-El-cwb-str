@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Website Promosi Produk</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(270deg, #ffffff, #cce7ff, #ffffff);
+      background-size: 600% 600%;
+      animation: gradientMove 15s ease infinite;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: #4a90e2;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      z-index: 1000;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+    }
+    .menu-btn, .theme-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.6rem;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 0.4rem 0.6rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .menu-btn:hover, .theme-btn:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .menu-icon {
+      width: 25px;
+      height: 2px;
+      background-color: white;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+    .menu-icon::before,
+    .menu-icon::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 2px;
+      background-color: white;
+      border-radius: 2px;
+      left: 0;
+      transition: 0.3s;
+    }
+    .menu-icon::before {
+      top: -8px;
+    }
+    .menu-icon::after {
+      top: 8px;
+    }
+    nav.sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 220px;
+      height: 100%;
+      background: #2c6ed5;
+      padding: 2rem 1rem;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      border-radius: 0 20px 20px 0;
+      z-index: 1100;
+      font-family: 'Montserrat', sans-serif;
+    }
+    nav.sidebar.open {
+      left: 0;
+    }
+    nav.sidebar ul {
+      list-style: none;
+    }
+    nav.sidebar ul li {
+      margin-bottom: 1.5rem;
+    }
+    nav.sidebar ul li a {
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+      display: block;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      transition: background-color 0.3s ease;
+    }
+    nav.sidebar ul li a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    .banner {
+      position: relative;
+      height: 220px;
+      border-radius: 20px;
+      margin: 1rem;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(74,144,226,0.4);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem 1.5rem;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      user-select: none;
+    }
+    .profile-photo {
+      display: block;
+      margin: -2px auto 1.5rem auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid white;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      background-color: white;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .profile-photo:hover {
+      transform: scale(1.05);
+    }
+    main {
+      flex: 1;
+      padding: 1rem 1rem 2rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .store-description {
+      margin-top: 0;
+      font-size: 1.15rem;
+      color: #444;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+      user-select: none;
+      white-space: pre-wrap;
+      min-height: 4.5em;
+      border-right: 3px solid #50e3c2;
+      overflow: hidden;
+    }
+    .social-icons {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+    }
+    .social-icons a img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 3px 12px rgba(26,115,232,0.3);
+      padding: 6px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      object-fit: contain;
+      display: block;
+    }
+    .social-icons a:hover img {
+      transform: scale(1.2);
+      box-shadow: 0 6px 24px rgba(80,227,194,0.7);
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, opacity 0.6s ease;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      user-select: none;
+    }
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      user-select: none;
+    }
+    .product-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+    .product-price {
+      font-weight: 700;
+      color: #50e3c2;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .buy-btn {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      user-select: none;
+    }
+    .buy-btn:hover {
+      background-color: #357abd;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      display: none; justify-content: center; align-items: center;
+      z-index: 1200; padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      user-select: none;
+    }
+    .modal-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1rem;
+      color: #4a90e2;
+    }
+    .modal-content p {
+      margin-bottom: 1.5rem;
+      color: #555;
+      font-size: 1rem;
+      white-space: pre-line;
+    }
+    .modal-price {
+      font-weight: 700;
+      color: #50e3c2;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .modal-buttons button {
+      flex: 1 1 45%;
+      padding: 0.6rem 1rem;
+      border-radius: 14px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .btn-contact {
+      background-color: #4a90e2;
+      color: white;
+    }
+    .btn-contact:hover {
+      background-color: #357abd;
+    }
+    .btn-close {
+      background-color: #e74c3c;
+      color: white;
+      flex: 1 1 100%;
+      margin-top: 1rem;
+    }
+    .btn-close:hover {
+      background-color: #c0392b;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: #777;
+      border-top: 1px solid #ddd;
+      background-color: #fafafa;
+      border-radius: 20px 20px 0 0;
+      margin-top: auto;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark-theme {
+      background: linear-gradient(270deg, #2c3e50, #3498db, #2c3e50);
+      color: #eee;
+    }
+    body.dark-theme header {
+      background: #222f4a;
+    }
+    body.dark-theme .banner {
+      background: none;
+      filter: brightness(0.7);
+    }
+    body.dark-theme .social-icons a {
+      background-color: #222f4a;
+      color: #50e3c2;
+      box-shadow: 0 3px 12px rgba(80,227,194,0.6);
+    }
+    body.dark-theme .product-card {
+      background: #34495e;
+      color: #eee;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    body.dark-theme footer {
+      background-color: #222f4a;
+      color: #aaa;
+      border-top: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <button aria-label="Open menu" class="menu-btn" id="menuBtn" title="Menu">
+        <span class="menu-icon"></span>
+      </button>
+      <h1 id="tokoname" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.4rem;"></h1>
+    </div>
+    <button aria-label="Atur Tema" class="theme-btn" id="themeBtn" title="Atur Tema">
+      🌓
+    </button>
+  </header>
+
+  <nav class="sidebar" id="sidebar" aria-label="Navigasi utama">
+    <ul>
+      <li><a href="#" id="berandaLink" aria-label="Beranda">Beranda</a></li>
+      <li><a href="#" id="waLink" target="_blank" rel="noopener" aria-label="Kontak WhatsApp">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <section class="banner" id="banner" aria-label="Banner toko">
+    <div class="banner-content" id="bannerContent"></div>
+  </section>
+
+  <img src="" alt="Foto Profil Toko" class="profile-photo" id="profilePhoto" />
+
+  <main>
+    <section class="store-description" aria-label="Deskripsi toko" id="storeDescription"></section>
+
+    <section class="social-icons" aria-label="Sosial media toko" id="socialIcons"></section>
+
+    <section class="products" aria-label="Daftar produk" id="products"></section>
+  </main>
+
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-content">
+      <h3 id="modalTitle">Produk Name</h3>
+      <img src="" alt="" id="modalImage" style="width: 100%; border-radius: 16px; margin-bottom: 1rem; max-height: 200px; object-fit: cover;" />
+      <p id="modalDesc">Deskripsi produk akan tampil di sini.</p>
+      <div class="modal-price"></div>
+      <div class="modal-buttons">
+        <button class="btn-close" id="btnCloseModal">Close</button>
+        <button class="btn-contact" id="btnContactSeller">Order</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Promotion Website By Eriźa
+  </footer>
+
+  <script>
+    let storeData;
+
+    fetch('./data.json')
+      .then(res => res.json())
+      .then(data => {
+        storeData = data;
+        // Nama toko
+        document.getElementById('tokoname').textContent = data.tokoname;
+        // Banner
+        document.getElementById('banner').style.backgroundImage = `url('${data.bannerImage}')`;
+        document.getElementById('bannerContent').textContent = `Selamat Datang di ${data.tokoname}`;
+        // Foto profil
+        document.getElementById('profilePhoto').src = data.profileImage;
+        // Sidebar links
+        document.getElementById('waLink').href = `https://wa.me/${data.wanumber}`;
+        document.getElementById('berandaLink').href = data.homepage || '#';
+        // Sosial media
+        const socialIcons = document.getElementById('socialIcons');
+        socialIcons.innerHTML = `
+          <a href="${data.youtube}" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+            <img src="youtube.jpg" alt="YouTube" />
+          </a>
+          <a href="${data.instagram}" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <img src="instagram.jpg" alt="Instagram" />
+          </a>
+          <a href="${data.tiktok}" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+            <img src="tiktok.jpg" alt="TikTok" />
+          </a>
+        `;
+        // Produk
+        const productsContainer = document.getElementById('products');
+        productsContainer.innerHTML = data.products.map(prod => {
+          const imgName = prod.name + '.jpg';
+          return `
+            <article class="product-card" data-name="${prod.name}" data-price="${prod.price}" data-desc="${prod.desc}" data-img="${imgName}">
+              <img src="${imgName}" alt="${prod.name}" class="product-image" />
+              <h3 class="product-name">${prod.name}</h3>
+              <p class="product-price">Rp ${Number(prod.price).toLocaleString('id-ID')}</p>
+              <button class="buy-btn">Lihat Produk</button>
+            </article>
+          `;
+        }).join('');
+        // IntersectionObserver untuk animasi produk
+        const productEls = document.querySelectorAll('.product-card');
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        }, {threshold: 0.2});
+        productEls.forEach(product => observer.observe(product));
+        // Setup modal event listeners
+        setupModal();
+        // Setup typing animation
+        setupTypingAnimation(data.description);
+      });
+
+    // Sidebar toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) sidebar.classList.remove('open');
+    });
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      themeBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌓';
+    });
+
+    // Modal setup function
+    function setupModal() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalImage = document.getElementById('modalImage');
+      const btnContactSeller = document.getElementById('btnContactSeller');
+      const btnCloseModal = document.getElementById('btnCloseModal');
+      const modalPrice = document.querySelector('.modal-price');
+
+      document.body.addEventListener('click', e => {
+        if (e.target.classList.contains('buy-btn')) {
+          const productCard = e.target.closest('.product-card');
+          if (!productCard) return;
+          modalTitle.textContent = productCard.dataset.name;
+          modalDesc.textContent = productCard.dataset.desc;
+          modalImage.src = productCard.dataset.img;
+          modalImage.alt = productCard.dataset.name;
+          modalPrice.textContent = `Harga: Rp ${Number(productCard.dataset.price).toLocaleString('id-ID')}`;
+          btnContactSeller.dataset.productName = productCard.dataset.name;
+          modalOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      btnCloseModal.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      modalOverlay.addEventListener('click', e => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      btnContactSeller.addEventListener('click', () => {
+        const name = btnContactSeller.dataset.productName;
+        if (!storeData) return;
+        const phoneNumber = storeData.wanumber;
+        const message = encodeURIComponent(`Halo, saya ingin memesan produk "${name}".`);
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+      });
+    }
+
+    // Typing animation for multiline description
+    function setupTypingAnimation(text) {
+      const storeDescriptionEl = document.getElementById('storeDescription');
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 40;
+      let pauseTime = 2000;
+      function typeText() {
+        if (!isDeleting) {
+          storeDescriptionEl.textContent = text.substring(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === text.length) {
+            isDeleting = true;
+            setTimeout(typeText, pauseTime);
+            return;
+          }
+        } else {
+          storeDescriptionEl.textContent = text.substring(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            isDeleting = false;
+            setTimeout(typeText, 500);
+            return;
+          }
+        }
+        setTimeout(typeText, typingSpeed);
+      }
+      typeText();
+    }
+  </script>
+</body>
+</html>
